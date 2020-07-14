@@ -1,7 +1,4 @@
-# GeekText
-Online bookstore web application 
-
-# Geek Text Online Book Store Web Application.
+# Geek Text
 A web application implementing basic online store functionalities.
 
 ## Stack
