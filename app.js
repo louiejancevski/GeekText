@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const booksRouter = require ('./routes/api/books')
 const authorsRouter = require ('./routes/api/authors')
+const usersRouter = require('./routes/api/users');
 
 require('dotenv').config()
 
@@ -22,6 +23,7 @@ app.use(bodyParser.json())
 //API Use Routes
 app.use('/api/books', booksRouter)
 app.use('/api/authors', authorsRouter)
+app.use('/api/users', usersRouter) 
 
 // Get PORT
 const PORT = process.env.PORT || 5000
