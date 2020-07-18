@@ -5,8 +5,8 @@ const router = express.Router()
 //Users Model
 const User = require('../../models/user')
 
-// @route   GET api/books
-// @desc    Get all books
+// @route   GET api/users
+// @desc    Get all users
 // @access  Public
 router.get('/' , (req, res) => {
     User.find()
@@ -14,8 +14,8 @@ router.get('/' , (req, res) => {
         .then(users => res.json(users))
 })
 
-// @route GET api/users/:isbn
-// @description Get single user by ID
+// @route GET api/users/:id
+// @desc Get single user by ID
 // @access Public
 router.get('/:id', (req, res) => {
     User.findById(req.params.isbn)
@@ -24,7 +24,7 @@ router.get('/:id', (req, res) => {
   });
 
 // @route   POST api/users/create
-// @desc    Create a book
+// @desc    Create user
 // @access  Public
 router.post('/create', (req, res) => {
     User.create(req.body)
@@ -38,8 +38,8 @@ router.post('/create', (req, res) => {
         }));
   });
 
-// @router  DELETE api/books/:id
-// @desc    Delete a book
+// @router  DELETE api/users/:id
+// @desc    Delete user
 // @access  Public
 router.delete('/:id' , (req, res) => {
    User.findById(req.params.id)
@@ -50,6 +50,5 @@ router.delete('/:id' , (req, res) => {
         msg: err.message,
     }))
 })
-
 
 module.exports = router;
