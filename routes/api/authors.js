@@ -13,7 +13,7 @@ router.get('/' , (req, res) => {
         .sort({ date: -1})
         .then(authors => res.json(authors))
 })
-
+ 
 // @route   POST api/authors/create
 // @desc    Create an author
 // @access  Public
