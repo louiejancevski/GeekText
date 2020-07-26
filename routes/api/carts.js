@@ -24,6 +24,45 @@ router.post('/create', (req, res) => {
 });
 
 
+// @route   POST api/carts/create
+// @desc    add a book
+// @access  Public
+router.post('/addBook/:isbn', (req, res) => {
+  Book.findById(req.params.isbn)
+  .then(book => res.json(book))
+  .catch(err => res.status(404).json({ msg: 'Sorry! Book not found' }));
+
+  Cart.create(req.body)
+    .then(cart => res.json({ 
+        msg: 'Product added successfully',
+        book: cart
+  }))
+    .catch(err => res.status(400).json({ 
+        msg: 'Unable to add this book',
+        err: err.message
+      }));
+});
+
+
+// @router  DELETE api/carts/:id
+// @desc    Delete a cart
+// @access  Public`
+router.delete('/:id' , (req, res) => {
+  Cart.findById(req.params.id)
+   .then(cart => cart.remove().then(() => res.json({
+       msg: 'Success! Deleted cart'
+   })) )
+   .catch (err => res.json({
+       msg: err.message,
+   }))
+})
+
+
+router.get('/' , (req, res) => {
+  Cart.find()
+      .sort({ date: -1})
+      .then(carts => res.json(carts))
+})
 
 /*
 // @route GET api/users/:id
