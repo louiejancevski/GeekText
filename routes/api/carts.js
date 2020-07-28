@@ -29,18 +29,22 @@ router.post('/create', (req, res) => {
 // @access  Public
 router.post('/addBook/:isbn', (req, res) => {
   Book.findById(req.params.isbn)
-  .then(book => res.json(book))
-  .catch(err => res.status(404).json({ msg: 'Sorry! Book not found' }));
-
-  Cart.create(req.body)
-    .then(cart => res.json({ 
-        msg: 'Product added successfully',
-        book: cart
+  .then(book => res.json({
+    msg: 'Product found successfully',
   }))
-    .catch(err => res.status(400).json({ 
-        msg: 'Unable to add this book',
-        err: err.message
-      }));
+  .catch(err => res.status(404).json({ msg: 'Sorry! Book not found' }));
+  
+  Cart.create(cart)
+
+  // Cart.create(req.body)
+  //   .then(cart => res.json({ 
+  //       msg: 'Product added successfully',
+  //       cart: cart
+  // }))
+  //   .catch(err => res.status(400).json({ 
+  //       msg: 'Unable to add this book',
+  //       err: err.message
+  //     }));
 });
 
 

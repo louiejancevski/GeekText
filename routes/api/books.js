@@ -18,7 +18,7 @@ router.get('/' , (req, res) => {
 // @description Get single book by ISBN
 // @access Public
 router.get('/:isbn', (req, res) => {
-    Book.findById(req.params.isbn)
+    Book.find({isbn:req.params.isbn})
       .then(book => res.json(book))
       .catch(err => res.status(404).json({ msg: 'Sorry! Book not found' }));
   });
