@@ -7,6 +7,7 @@ const authorsRouter = require ('./routes/api/authors')
 const commentRouter = require ('./routes/api/comments')
 const usersRouter = require('./routes/api/users');
 const shoppingCartRouter = require('./routes/api/shoppingCarts');
+const ratingRouter = require('./routes/api/ratings');
 
 
 require('dotenv').config()
@@ -29,6 +30,7 @@ app.use('/api/authors', authorsRouter)
 app.use('/api/users', usersRouter) 
 app.use('/api/comments', commentRouter)
 app.use('/api/shoppingCart', shoppingCartRouter)
+app.use('/api/ratings', ratingRouter)
 
 
 // Get PORT
