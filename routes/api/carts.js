@@ -15,8 +15,12 @@ const book = require('../../models/book')
 router.post('/create/:id', (req, res) => {
   User.findById(req.params.id)  
   .then (Cart.create(req.params.id ,req.body))
-    .then(() => res.json({
-        msg: 'Success! Created cart for user!'
+    .then(cart => res.json({
+      msg: "Cart added to user",
+      cart: cart
+    }))
+    .catch(err => res.json({
+      msg: err.message,
     }))
   .catch (err => res.json({
       msg: err.message,
@@ -32,8 +36,8 @@ router.post('/:id/addBook/:isbn', (req, res) => {
   User.findById(req.params.id)
   .then(Book.find({isbn:req.params.isbn})
     .then())
-
-
+    .catch()
+  .catch()
 });
 
 
@@ -44,11 +48,9 @@ router.delete('/:id/deleteBook/:isbn' , (req, res) => {
   User.findById(req.params.id)
   .then(Book.find({isbn:req.params.isbn})
     .then())
+    .catch()
+  .catch()
   
-  
-  
-  
- 
 })
 
 
@@ -56,46 +58,8 @@ router.get('/' , (req, res) => {
   Cart.find()
       .sort({ date: -1})
       .then(carts => res.json(carts))
+      .catch()
 })
 
-/*
-// @route GET api/users/:id
-// @desc Get single user by ID
-// @access Public
-router.get('/:id', (req, res) => {
-    User.findById(req.params.id)
-      .then(user => res.json(user))
-      .catch(err => res.status(404).json({ msg: 'Sorry! User not found' }));
-  });
 
-// @route   POST api/users/create
-// @desc    Add book
-// @access  Public
-router.post('/add', (req, res) => {
-    User.create(req.body)
-      .then(user => res.json({
-          msg: 'User added successfully',
-          user: user
-    }))
-      .catch(err => res.status(400).json({
-          msg: 'Unable to add this user',
-          err: err.message
-        }));
-  });
-
-// @router  DELETE api/users/:id
-// @desc    Delete user
-// @access  Public
-router.delete('/:id' , (req, res) => {
-   User.findById(req.params.id)
-    .then(user => user.remove().then(() => res.json({
-        msg: 'Success! Deleted user'
-    })) )
-    .catch (err => res.json({
-        msg: err.message,
-    }))
-})
-
-// TODO: CHANGE ALL THIS
-*/
 module.exports = router;
