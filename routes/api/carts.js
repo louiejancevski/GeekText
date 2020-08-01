@@ -6,8 +6,6 @@ const router = express.Router()
 const Book = require('../../models/book')
 const Cart = require('../../models/cart')
 const User = require('../../models/user')
-const book = require('../../models/book')
-
 
 // @route   POST api/carts/create
 // @desc    Create a cart if user is in system
@@ -21,7 +19,6 @@ router.post('/create/:id', (req, res) => {
   .catch (err => res.json({
       msg: err.message,
   }))
-  
 });
 
 

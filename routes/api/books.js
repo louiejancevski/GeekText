@@ -18,7 +18,7 @@ router.get('/' , (req, res) => {
 // @description Get single book by ISBN
 // @access Public
 router.get('/:isbn', (req, res) => {
-    Book.find({isbn:req.params.isbn})
+    Book.findOne({isbn:req.params.isbn})
       .then(book => res.json(book))
       .catch(err => res.status(404).json({ msg: 'Sorry! Book not found' }));
   });
@@ -36,7 +36,17 @@ router.post('/create', (req, res) => {
           msg: 'Unable to add this book',
           err: err.message
         }));
-  });
+});
+
+// @router  GET api/books/author/:author
+// @desc    Delete books by author
+// @access  Public`
+router.get('/author/:author' , (req, res) => {
+  Book.find({author: req.params.author})
+    .then(books => res.json(books))
+    .catch(err => res.status(404).json({ msg: 'Sorry! Books were not found' }));
+})
+
 
 // @router  DELETE api/books/:id
 // @desc    Delete a book
@@ -50,5 +60,7 @@ router.delete('/:id' , (req, res) => {
         msg: err.message,
     }))
 })
+
+
 
 module.exports = router;
