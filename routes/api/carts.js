@@ -4,43 +4,59 @@ const router = express.Router()
 
 //Models needed
 const Book = require('../../models/book')
-const ShoppingCart = require('../../models/shoppingCart')
+const Cart = require('../../models/cart')
 const User = require('../../models/user')
+const book = require('../../models/book')
 
 
-// @route   POST api/shoppingCarts/create
-// @desc    Create a cart
+// @route   POST api/carts/create
+// @desc    Create a cart if user is in system
 // @access  Public
-router.post('/create', (req, res) => {
-  ShoppingCart.create(req.body)
-    .then(cart => res.json({ 
-        msg: 'Product added successfully',
-        cart: cart
+router.post('/create/:id', (req, res) => {
+  User.findById(req.params.id)  
+  .then (Cart.create(req.params.id ,req.body))
+    .then(() => res.json({
+        msg: 'Success! Created cart for user!'
+    }))
+  .catch (err => res.json({
+      msg: err.message,
   }))
-    .catch(err => res.status(400).json({ 
-        msg: 'Unable to add this book',
-        err: err.message
-      }));
+  
 });
 
-/*
-  //find a book
-  Book.findById(req.params.isbn)
-  .then(book => res.json(book))
-  .catch(err => res.status(404).json({ msg: 'Sorry! Book not found' }));
+
+// @route   POST api/carts/create
+// @desc    add a book
+// @access  Public
+router.post('/:id/addBook/:isbn', (req, res) => {
+  User.findById(req.params.id)
+  .then(Book.find({isbn:req.params.isbn})
+    .then())
+
+
 });
 
-  // with found book, add to shopping cart
-  ShoppingCart.create(req.body)
-    .then(cart => res.json({ 
-        msg: 'Product added successfully',
-        cart: cart
-  }))
-    .catch(err => res.status(400).json({ 
-        msg: 'Unable to add this book',
-        err: err.message
-      }));
-});
+
+// @router  DELETE api/carts/:id
+// @desc    Delete a cart
+// @access  Public`
+router.delete('/:id/deleteBook/:isbn' , (req, res) => {
+  User.findById(req.params.id)
+  .then(Book.find({isbn:req.params.isbn})
+    .then())
+  
+  
+  
+  
+ 
+})
+
+
+router.get('/' , (req, res) => {
+  Cart.find()
+      .sort({ date: -1})
+      .then(carts => res.json(carts))
+})
 
 /*
 // @route GET api/users/:id
