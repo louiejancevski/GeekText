@@ -23,7 +23,7 @@ db.once('open', () => console.log('Connected to Database'))
 // Bodyparser middleware
 app.use(bodyParser.json())
 
-//API Use Routes
+//API Routes
 app.use('/api/books', booksRouter)
 app.use('/api/authors', authorsRouter)
 app.use('/api/users', usersRouter)
