@@ -39,14 +39,13 @@ router.post('/create', (req, res) => {
 });
 
 // @router  GET api/books/author/:author
-// @desc    Delete books by author
+// @desc    Get all books by a single author
 // @access  Public`
 router.get('/author/:author' , (req, res) => {
   Book.find({author: req.params.author})
     .then(books => res.json(books))
     .catch(err => res.status(404).json({ msg: 'Sorry! Books were not found' }));
 })
-
 
 // @router  DELETE api/books/:id
 // @desc    Delete a book
@@ -60,7 +59,5 @@ router.delete('/:id' , (req, res) => {
         msg: err.message,
     }))
 })
-
-
 
 module.exports = router;
