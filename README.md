@@ -52,10 +52,6 @@ To create an API Service to support an online web application bookstore which ta
 - Create an author with first name, last name, biography and publisher.
 - Retrieve a list of books associate with an author.
 
-#### API Actions:
-- Users can have a favourites lists.
-- Users can add books from the saved for later list.
-
 ## To run on your machine:
 
 After cloning the repo, run ```npm install``` from the project root directory. 
