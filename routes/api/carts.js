@@ -6,6 +6,7 @@ const router = express.Router()
 const Book = require('../../models/book')
 const Cart = require('../../models/cart')
 const User = require('../../models/user')
+const book = require('../../models/book')
 
 
 // @route   POST api/carts/create
@@ -29,36 +30,25 @@ router.post('/create/:id', (req, res) => {
 // @access  Public
 router.post('/:id/addBook/:isbn', (req, res) => {
   User.findById(req.params.id)
-  
-  
-  Book.find({isbn:req.params.isbn})
-  .then(book => res.json(book))
-  .catch(err => res.status(404).json({ msg: 'Sorry! Book not found' }));
-  
+  .then(Book.find({isbn:req.params.isbn})
+    .then())
 
-  // Cart.create(req.body)
-  //   .then(cart => res.json({ 
-  //       msg: 'Product added successfully',
-  //       cart: cart
-  // }))
-  //   .catch(err => res.status(400).json({ 
-  //       msg: 'Unable to add this book',
-  //       err: err.message
-  //     }));
+
 });
 
 
 // @router  DELETE api/carts/:id
 // @desc    Delete a cart
 // @access  Public`
-router.delete('/:id' , (req, res) => {
-  Cart.findById(req.params.id)
-   .then(cart => cart.remove().then(() => res.json({
-       msg: 'Success! Deleted cart'
-   })) )
-   .catch (err => res.json({
-       msg: err.message,
-   }))
+router.delete('/:id/deleteBook/:isbn' , (req, res) => {
+  User.findById(req.params.id)
+  .then(Book.find({isbn:req.params.isbn})
+    .then())
+  
+  
+  
+  
+ 
 })
 
 
