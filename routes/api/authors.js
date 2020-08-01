@@ -13,7 +13,7 @@ router.get('/' , (req, res) => {
         .sort({ date: -1})
         .then(authors => res.json(authors))
 })
-
+ 
 // @route   POST api/authors/create
 // @desc    Create an author
 // @access  Public
@@ -30,17 +30,16 @@ router.post('/create', (req, res) => {
   });
 
 // @router  DELETE api/books/:id
-// @desc    Delete a book
+// @desc    Delete an author
 // @access  Public
 router.delete('/:id' , (req, res) => {
-   Book.findById(req.params.id)
-    .then(book => book.remove().then(() => res.json({
-        msg: 'Success! Deleted book'
+   Author.findById(req.params.id)
+    .then(author => author.remove().then(() => res.json({
+        msg: 'Success! Deleted author'
     })) )
     .catch (err => res.json({
         msg: err.message,
     }))
 })
-
 
 module.exports = router;

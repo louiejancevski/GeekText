@@ -40,7 +40,7 @@ router.post('/create', (req, res) => {
 
 // @router  DELETE api/books/:id
 // @desc    Delete a book
-// @access  Public
+// @access  Public`
 router.delete('/:id' , (req, res) => {
    Book.findById(req.params.id)
     .then(book => book.remove().then(() => res.json({
@@ -50,6 +50,5 @@ router.delete('/:id' , (req, res) => {
         msg: err.message,
     }))
 })
-
 
 module.exports = router;
