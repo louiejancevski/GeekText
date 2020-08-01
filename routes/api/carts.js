@@ -9,32 +9,32 @@ const User = require('../../models/user')
 
 
 // @route   POST api/carts/create
-// @desc    Create a cart
+// @desc    Create a cart if user is in system
 // @access  Public
-router.post('/create', (req, res) => {
-  Cart.create(req.body)
-    .then(cart => res.json({ 
-        msg: 'Product added successfully',
-        cart: cart
+router.post('/create/:id', (req, res) => {
+  User.findById(req.params.id)  
+  .then (Cart.create(req.params.id ,req.body))
+    .then(() => res.json({
+        msg: 'Success! Created cart for user!'
+    }))
+  .catch (err => res.json({
+      msg: err.message,
   }))
-    .catch(err => res.status(400).json({ 
-        msg: 'Unable to add this book',
-        err: err.message
-      }));
+  
 });
 
 
 // @route   POST api/carts/create
 // @desc    add a book
 // @access  Public
-router.post('/addBook/:isbn', (req, res) => {
-  Book.findById(req.params.isbn)
-  .then(book => res.json({
-    msg: 'Product found successfully',
-  }))
+router.post('/:id/addBook/:isbn', (req, res) => {
+  User.findById(req.params.id)
+  
+  
+  Book.find({isbn:req.params.isbn})
+  .then(book => res.json(book))
   .catch(err => res.status(404).json({ msg: 'Sorry! Book not found' }));
   
-  Cart.create(cart)
 
   // Cart.create(req.body)
   //   .then(cart => res.json({ 

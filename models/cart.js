@@ -1,11 +1,15 @@
 const mongoose = require('mongoose');
 
 const cartSchema = new mongoose.Schema ( {
-    bookName: {
+    userID: {
         type: String,
         required: true,
     },
 
+    isbn: {
+        type: String,
+    },
+    
     quantity: {
         type: Number,
     },
