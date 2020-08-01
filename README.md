@@ -7,7 +7,6 @@ A web application implementing basic online store functionalities.
 - Express
 - NodeJS
 
-
 ## Mission
 To create an API Service to support an online web application bookstore which targets a particular niche in technology. The application, named Geek Text will support the following features:
 
@@ -52,9 +51,21 @@ To create an API Service to support an online web application bookstore which ta
 - Create an author with first name, last name, biography and publisher.
 - Retrieve a list of books associate with an author.
 
-## To run on your machine:
+## To run locally:
 
-After cloning the repo, run ```npm install``` from the project root directory. 
+After cloning this repository, run ```npm install``` from the project root directory. 
 
-Once set you can use `npm start` to run the app on your localhost.
+Create a file and name it '.env', and make sure to put your own MongoDB database url inside a variable named 'DATABASE_URL'
 
+Once set you can use `npm start` to run the app on your localhost, or `npm run dev` to use nodemon.
+
+Nodemon is a tool that helps develop Nodejs based applications by automatically restarting the node application when file changes in the directory are detected. Nodemon does not require any additional changes to your code or method of development.
+
+## About this project
+This project was part of our Software Engineering I class at Florida International University, which took place in our Summer 2020 semester.
+
+This is a course designed as a CS upper level course in which students learn how to develop a complex software engineering project by using agile software engineering principles. 
+
+Students work as a team with the Scrum framework to create a production level-software product that will is demoed at the end of the semester. 
+
+In addition, the course covers traditional software engineering concepts such as system design with UML and testing principles. 
