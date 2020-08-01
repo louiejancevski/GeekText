@@ -1,11 +1,9 @@
 // routes/api/ratings.js
 const express = require('express')
 const router = express.Router()
-const mongoose = require("mongoose");
 
 //Models
 const Book = require('../../models/book');
-const Rating = require('../../models/rating');
 
 // @route   GET api/books
 // @desc    Get all books
