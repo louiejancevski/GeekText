@@ -59,7 +59,7 @@ Create a file and name it '.env', and make sure to put your own MongoDB database
 
 Once set you can use `npm start` to run the app on your localhost, or `npm run dev` to use nodemon.
 
-Nodemon is a tool that helps develop Nodejs based applications by automatically restarting the node application when file changes in the directory are detected. Nodemon does not require any additional changes to your code or method of development.
+Nodemon is a tool that helps develop Nodejs based applications by automatically restarting the node application when file changes in the directory are detected. 
 
 ## About this project
 This project was part of our Software Engineering I class at Florida International University, which took place in our Summer 2020 semester.
