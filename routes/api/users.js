@@ -1,11 +1,6 @@
 // routes/api/users.js
-<<<<<<< HEAD
 const express = require('express') ;
 const router = express.Router() ;
-=======
-const express = require('express')
-const router = express.Router()
->>>>>>> 38a0aeaf629153701fb48719d110826f4166ca04
 
 //Users Model
 const User = require('../../models/user')
@@ -43,7 +38,6 @@ router.post('/create', (req, res) => {
         }));
   });
 
-<<<<<<< HEAD
 // @route   POST api/users/create
 // @desc    Edit user
 // @access  Public
@@ -52,14 +46,16 @@ router.post('/edit', (req, res) => {
   const updatedId = req.body._id;
   const updatedFName = req.body.firstName;
   const updatedLName = req.body.lastName;
-  const updatedEmail = req.body.email;
+  // Email cannot be modidfied as requested
+  // const updatedEmail = req.body.email; 
   const updatedCell = req.body.cellphone;
   const updatedPassword = req.body.password;
 
   User.findById(updatedId).then( user => {
     user.firstName = updatedFName;
     user.lastName =updatedLName;
-    user.email = updatedEmail;
+    // Email cannot be modidfied as requested
+    //user.email = updatedEmail;
     user.cellphone = updatedCell;
     user.password = updatedPassword;
     return user.save() ;
@@ -76,8 +72,6 @@ router.post('/edit', (req, res) => {
    );
 });
 
-=======
->>>>>>> 38a0aeaf629153701fb48719d110826f4166ca04
 // @router  DELETE api/users/:id
 // @desc    Delete user
 // @access  Public

@@ -6,22 +6,15 @@ const booksRouter = require ('./routes/api/books')
 const authorsRouter = require ('./routes/api/authors')
 const commentRouter = require ('./routes/api/comments')
 const usersRouter = require('./routes/api/users');
-<<<<<<< HEAD
-const shoppingCartRouter = require('./routes/api/shoppingCarts');
-
-=======
+const creditCardRouter = require('./routes/api/creditCards') ;
 const cartRouter = require('./routes/api/carts');
->>>>>>> 38a0aeaf629153701fb48719d110826f4166ca04
 
 require('dotenv').config()
 
 // Create Express app
 const app = express()
-<<<<<<< HEAD
  
-=======
 
->>>>>>> 38a0aeaf629153701fb48719d110826f4166ca04
 //Connect to MongoDB
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 const db = mongoose.connection
@@ -31,22 +24,13 @@ db.once('open', () => console.log('Connected to Database'))
 // Bodyparser middleware
 app.use(bodyParser.json())
 
-<<<<<<< HEAD
-//API Use Routes
-app.use('/api/books', booksRouter)
-app.use('/api/authors', authorsRouter)
-app.use('/api/users', usersRouter) 
-app.use('/api/comments', commentRouter)
-app.use('/api/shoppingCart', shoppingCartRouter)
-
-=======
 //API Routes
 app.use('/api/books', booksRouter)
 app.use('/api/authors', authorsRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/comments', commentRouter)
 app.use('/api/carts', cartRouter)
->>>>>>> 38a0aeaf629153701fb48719d110826f4166ca04
+app.use('/api/creditCards', creditCardRouter)
 
 // Get PORT
 const PORT = process.env.PORT || 5000
