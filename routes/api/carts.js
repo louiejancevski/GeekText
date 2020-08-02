@@ -73,6 +73,7 @@ router.get('/' , (req, res) => {
   Cart.find()
       .sort({ date: -1})
       .then(carts => res.json(carts))
+      .catch()
 })
 
 module.exports = router;
