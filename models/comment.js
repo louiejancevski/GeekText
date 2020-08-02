@@ -21,6 +21,10 @@ const commentsSchema = new mongoose.Schema ( {
         
     },
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 38a0aeaf629153701fb48719d110826f4166ca04
 })
 
 module.exports = Comment = mongoose.model('comment', commentsSchema )

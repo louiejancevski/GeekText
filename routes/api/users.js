@@ -1,6 +1,11 @@
 // routes/api/users.js
+<<<<<<< HEAD
 const express = require('express') ;
 const router = express.Router() ;
+=======
+const express = require('express')
+const router = express.Router()
+>>>>>>> 38a0aeaf629153701fb48719d110826f4166ca04
 
 //Users Model
 const User = require('../../models/user')
@@ -38,6 +43,7 @@ router.post('/create', (req, res) => {
         }));
   });
 
+<<<<<<< HEAD
 // @route   POST api/users/create
 // @desc    Edit user
 // @access  Public
@@ -70,6 +76,8 @@ router.post('/edit', (req, res) => {
    );
 });
 
+=======
+>>>>>>> 38a0aeaf629153701fb48719d110826f4166ca04
 // @router  DELETE api/users/:id
 // @desc    Delete user
 // @access  Public

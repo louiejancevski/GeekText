@@ -29,7 +29,11 @@ router.post('/create', (req, res) => {
         }));
   });
 
+<<<<<<< HEAD
 // @router  DELETE api/books/:id
+=======
+// @router  DELETE api/authors/:id
+>>>>>>> 38a0aeaf629153701fb48719d110826f4166ca04
 // @desc    Delete an author
 // @access  Public
 router.delete('/:id' , (req, res) => {

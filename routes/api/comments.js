@@ -30,11 +30,19 @@ router.post('/create', (req, res) => {
 });
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 38a0aeaf629153701fb48719d110826f4166ca04
 //Read a Comment
 router.get("/:postId/comment", (req, res) => {
   Book.findOne({_id: req.params.postId }).populate("comments" ); 
   res.send(post);
 });
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 38a0aeaf629153701fb48719d110826f4166ca04
   
   module.exports = router;
