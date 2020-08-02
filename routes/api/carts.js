@@ -23,16 +23,15 @@ router.post('/create/:id', (req, res) => {
 // @route   POST api/carts/:id/addBook/:isbn
 // @desc    Add a book to shopping cart
 // @access  Public
-router.post('/:cartId/addBook/:isbn', (req, res) => {
-  Cart.findById(req.params.cartId)
-    .then(Book.find({isbn:req.params.isbn})
-    .then())
-  let cart = new Cart
-  cart.user = req.params.id
-  cart.items = []
-  cart.save()
+router.get('/:cartId/addBook', (req, res) => {
+  Cart.findOneAndUpdate(req.params.cartID , { 
+    $inc: { quantity: 1 },
+    $push: { "items": { product: 'as'} }
+
+  })
   .then(cart => res.json(cart))
-  .catch(err => res.status(404).json({ msg: 'Sorry! Cart could not be created' }));
+  .catch(err => res.status(404).json({ msg: 'Sorry! Book not found' }));
+  
 });
 
 
