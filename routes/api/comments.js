@@ -32,10 +32,11 @@ router.post('/create', (req, res) => {
 
 
 //Read a Comment
-router.get("/:postId/comment", (req, res) => {
-  Book.findOne({_id: req.params.postId }).populate("comments" ); 
-  res.send(post);
-});
+router.get('/' , (req, res) => {
+  Comment.find()
+      .sort({ rating: -1})
+      .then(comments => res.json(comments))
+})
 
 
   

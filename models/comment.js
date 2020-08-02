@@ -20,6 +20,13 @@ const commentsSchema = new mongoose.Schema ( {
         type: String,
         
     },
+    
+    rating: {
+        type: Number,
+        min: 5,
+        max: 5,
+        required: true,
+    }
 
 
 })
