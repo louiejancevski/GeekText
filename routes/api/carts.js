@@ -23,12 +23,23 @@ router.post('/create/:id', (req, res) => {
 // @route   POST api/carts/:id/addBook/:isbn
 // @desc    Add a book to shopping cart
 // @access  Public
-router.get('/:cartId/addBook', (req, res) => {
+router.post('/:cartId/addBook', (req, res) => {
+  var book = {
+    product: 'as',
+    name: 'jsa'
+  }
+  
   Cart.findOneAndUpdate(req.params.cartID , { 
     $inc: { quantity: 1 },
-    $push: { "items": { product: 'as'} }
+    
+    $push: {
+      'items':  {
+        "name": "foo",
+        "idAccount": 123456
+      }
+  }, 
 
-  })
+})
   .then(cart => res.json(cart))
   .catch(err => res.status(404).json({ msg: 'Sorry! Book not found' }));
   
@@ -37,7 +48,7 @@ router.get('/:cartId/addBook', (req, res) => {
 
 
 // @router  DELETE api/carts/:id
-// @desc    Delete a cart
+// @desc    Delete a cart 
 // @access  Public`
 router.delete('/:id/deleteBook/:isbn' , (req, res) => {
   User.findById(req.params.id)
