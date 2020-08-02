@@ -43,14 +43,27 @@ router.post('/:cartId/addBook/:bookISBN', (req, res) => {
 });
 
 
-// @router  DELETE api/carts/:id
+// @router  DELETE api/carts/:cartId/deleteBook/:bookISBN
 // @desc    Delete a cart 
 // @access  Public
-router.delete('/:id/deleteBook/:isbn' , (req, res) => {
-  User.findById(req.params.id)
-  .then(Book.find({isbn:req.params.isbn})
-    .then())
-
+router.delete('/:cartId/deleteBook/:bookISBN' , (req, res) => {
+  Book.find({isbn:req.params.bookISBN} , function(err, book){
+    if (err) res.status(404).json({ msg: 'Sorry! Book not found' })
+    else {
+      Cart.findOneAndDelete(req.params.cartID , { 
+        //$inc: { quantity: 1 },
+        $pull: {
+          'items':  {
+            book
+          }
+      }, 
+    
+    })
+    
+      .then(cart => res.json(cart))
+      .catch(err => res.status(404).json({ msg: 'Sorry! Book not found' }));             
+    }
+  });
 })
 
 // @router  GET api/carts/
