@@ -19,34 +19,26 @@ router.get('/:genre', (req, res) => {
 router.get('/:author', (req, res) => {
     Book.find({genre : req.params.author})
         .then(book => res.json(book))
-<<<<<<< HEAD
-        .catch(err => res.status(400).json({msg: 'Author not found!'}));
 })
-
 
 //@route GET api/sorting/:copiesSold
-//@description Get top seller books(Sold the most copied)
+//@description Get top seller books. The have sold the most copied
 //@access Public
 router.get('/:copiesSold', (req,res) => {
-    Book.find({copiesSold : req.params.copiesSold})
+    Book.find({copiesSold: req.params.book})
         .then(book => res.json(book))
-        .catch(err => res.status(400).json({msg: 'Data not available!'}))
 })
 
-/*
-//@route GET api/sorting/:isbn
-//@description Get X books at the same time. X is an integer
+//@route GET api/sorting/rating
+//@description list book for a particular rating and higher.
 //@access Public
-router.get('/:isbn', (req, res) => {
-    Book.find({isbn: req.params.isbn})
-      .then(book => res.json(book))
-      .catch(err => res.status(404).json({ msg: 'Sorry! Book not found' }));
-  });
-    
-*/
-
-
-module.exports = router
-=======
+router.get('/rating/:rating', (req,res) => {
+    Book.find({rating: req.params.rating})
+        .sort({rating: -1})
+        .then(book => res.json(book))
 })
->>>>>>> c54a4800f483b2bde76cf01c306ca20822830948
+
+//@route GET api/sorting/
+//@description list X books at a time where X is an integer.
+//@access Public
+
