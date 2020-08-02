@@ -44,7 +44,7 @@ router.post('/:cartId/addBook/:bookISBN', (req, res) => {
 
 
 // @router  DELETE api/carts/:cartId/deleteBook/:bookISBN
-// @desc    Delete a cart 
+// @desc    Delete a cart #TODO: Change to delete a single book
 // @access  Public
 router.delete('/:cartId/deleteBook/:bookISBN' , (req, res) => {
   Book.find({isbn:req.params.bookISBN} , function(err, book){
