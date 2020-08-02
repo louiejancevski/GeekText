@@ -19,6 +19,7 @@ router.get('/:genre', (req, res) => {
 router.get('/:author', (req, res) => {
     Book.find({genre : req.params.author})
         .then(book => res.json(book))
+<<<<<<< HEAD
         .catch(err => res.status(400).json({msg: 'Author not found!'}));
 })
 
@@ -46,3 +47,6 @@ router.get('/:isbn', (req, res) => {
 
 
 module.exports = router
+=======
+})
+>>>>>>> c54a4800f483b2bde76cf01c306ca20822830948

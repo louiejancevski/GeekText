@@ -4,43 +4,54 @@ const router = express.Router()
 
 //Models needed
 const Book = require('../../models/book')
-const ShoppingCart = require('../../models/shoppingCart')
+const Cart = require('../../models/cart')
 const User = require('../../models/user')
 
-
-// @route   POST api/shoppingCarts/create
+// @route   POST api/carts/create
 // @desc    Create a cart
 // @access  Public
-router.post('/create', (req, res) => {
-  ShoppingCart.create(req.body)
-    .then(cart => res.json({ 
-        msg: 'Product added successfully',
-        cart: cart
-  }))
-    .catch(err => res.status(400).json({ 
-        msg: 'Unable to add this book',
-        err: err.message
-      }));
+router.post('/create/:id', (req, res) => {
+    let cart = new Cart
+    cart.user = req.params.id
+    cart.items = []
+    cart.save()
+    .then(cart => res.json(cart))
+    .catch(err => res.status(404).json({ msg: 'Sorry! Cart could not be created' }));
 });
 
-/*
-  //find a book
-  Book.findById(req.params.isbn)
-  .then(book => res.json(book))
+
+// @route   POST api/carts/:id/addBook/:isbn
+// @desc    Add a book to shopping cart
+// @access  Public
+router.get('/:cartId/addBook', (req, res) => {
+  Cart.findOneAndUpdate(req.params.cartID , { 
+    $inc: { quantity: 1 },
+    $push: { "items": { product: 'as'} }
+
+  })
+  .then(cart => res.json(cart))
   .catch(err => res.status(404).json({ msg: 'Sorry! Book not found' }));
+  
 });
 
-  // with found book, add to shopping cart
-  ShoppingCart.create(req.body)
-    .then(cart => res.json({ 
-        msg: 'Product added successfully',
-        cart: cart
-  }))
-    .catch(err => res.status(400).json({ 
-        msg: 'Unable to add this book',
-        err: err.message
-      }));
-});
+
+
+// @router  DELETE api/carts/:id
+// @desc    Delete a cart
+// @access  Public`
+router.delete('/:id/deleteBook/:isbn' , (req, res) => {
+  User.findById(req.params.id)
+  .then(Book.find({isbn:req.params.isbn})
+    .then())
+
+})
+
+
+router.get('/' , (req, res) => {
+  Cart.find()
+      .sort({ date: -1})
+      .then(carts => res.json(carts))
+})
 
 /*
 // @route GET api/users/:id
