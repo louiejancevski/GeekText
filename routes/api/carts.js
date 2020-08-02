@@ -8,30 +8,33 @@ const Cart = require('../../models/cart')
 const User = require('../../models/user')
 
 // @route   POST api/carts/create
-// @desc    Create a cart if user is in system
+// @desc    Create a cart
 // @access  Public
 router.post('/create/:id', (req, res) => {
-  User.findById(req.params.id)  
-  .then (Cart.create(req.params.id ,req.body))
-    .then(() => res.json({
-        msg: 'Success! Created cart for user!'
-    }))
-  .catch (err => res.json({
-      msg: err.message,
-  }))
+    let cart = new Cart
+    cart.user = req.params.id
+    cart.items = []
+    cart.save()
+    .then(cart => res.json(cart))
+    .catch(err => res.status(404).json({ msg: 'Sorry! Cart could not be created' }));
 });
 
 
-// @route   POST api/carts/create
-// @desc    add a book
+// @route   POST api/carts/:id/addBook/:isbn
+// @desc    Add a book to shopping cart
 // @access  Public
-router.post('/:id/addBook/:isbn', (req, res) => {
-  User.findById(req.params.id)
-  .then(Book.find({isbn:req.params.isbn})
+router.post('/:cartId/addBook/:isbn', (req, res) => {
+  Cart.findById(req.params.cartId)
+    .then(Book.find({isbn:req.params.isbn})
     .then())
-
-
+  let cart = new Cart
+  cart.user = req.params.id
+  cart.items = []
+  cart.save()
+  .then(cart => res.json(cart))
+  .catch(err => res.status(404).json({ msg: 'Sorry! Cart could not be created' }));
 });
+
 
 
 // @router  DELETE api/carts/:id
@@ -41,11 +44,7 @@ router.delete('/:id/deleteBook/:isbn' , (req, res) => {
   User.findById(req.params.id)
   .then(Book.find({isbn:req.params.isbn})
     .then())
-  
-  
-  
-  
- 
+
 })
 
 
