@@ -29,7 +29,7 @@ router.get('/author/:author', (req, res) => {
 
 router.get('/copiesSold',(req,res) => {
     Book.find()
-    .sort({copiesSold:-1})
+    .sort({copiesSold:-1}).limit(10)
     .then(book=>res.json(book))
 })
 
@@ -42,18 +42,14 @@ router.get('/rating/:rating', (req,res) => {
 
 })
    
-//@route GET api/sorting/listBook/
+//@route GET api/sorting/listNumBooks
 //@description list X books at a time where X is an integer.
 //@access Public
 
-/*router.get('/listBook', (req,res) => {
-    Book.find()
-        .then(book=>res.json(book))
-        {$range [0,20,5]}
-        
+router.get('/listNumBooks', (req,res) => {
+    Book.find().limit(3)
+    .then(books => res.json(books))
+    .catch(err => res.status(404).json({msg: 'Sorry. Can not perform the operation.'}))
 })
-*/
-
-
 
 module.exports = router;
