@@ -64,7 +64,7 @@ Nodemon is a tool that helps develop Nodejs based applications by automatically 
 ## About this project
 This project was part of our Software Engineering I class at Florida International University, which took place in our Summer 2020 semester.
 
-This is a course designed as a CS upper level course in which students learn how to develop a complex software engineering project by using agile software engineering principles. 
+This is a course designed as a CS upper level course in which students learn how to develop a complex software engineering project by using agile software engineering principles.
 
 Students work as a team with the Scrum framework to create a production level-software product that will is demoed at the end of the semester. 
 
