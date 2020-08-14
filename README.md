@@ -1,6 +1,6 @@
 # Geek Text
-A web application implementing basic online store functionalities.
 
+An online bookstore web API implementing basic online store functionalities.
 
 ## Stack
 - MongoDB
